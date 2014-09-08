@@ -2,7 +2,7 @@
 	<% if @restaurant.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@restaurant.errors.count, "error") %> This restaurant can't be saved: </h2>
-				<ul><% @restaurants.errors.full_messages.eacg do |msg| %>
+				<ul><% @restaurants.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 					<% end %>
 				</ul>
