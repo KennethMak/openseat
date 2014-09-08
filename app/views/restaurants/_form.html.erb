@@ -1,4 +1,29 @@
-<%= form_for @restaurants do |f| %>
+<%= form_for @restaurant do |f| %>
 	<% if @restaurant.errors.any? %>
 		<div id="error_explanation">
-			<h2></h2>
+			<h2><%= pluralize(@restaurant.errors.count, "error") %> This restaurant can't be saved: </h2>
+				<ul><% @restaurants.errors.full_messages.eacg do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :name, "Restaurant Name" %></br>
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="field">
+		<%= f.label :location %></br>
+		<%= f.text_field :location %>
+	</div>
+
+	<div class="field">
+		<%= f.label :description %></br>
+		<%= f.text_area :description %>
+	</div>
+
+	<div class="action"><%= f.submit %></div>
+
+<% end %>

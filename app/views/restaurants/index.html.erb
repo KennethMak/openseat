@@ -1,2 +1,14 @@
-<h1>Restaurants#index</h1>
-<p>Find me in app/views/restaurants/index.html.erb</p>
+<h1>Restaurants</h1>
+
+<%= link_to "Add a Restaurant", new_restaurant_url %>
+
+<% @restaurants.each do |restaurant| %>
+	<p> <%= restaurant.name %>, 
+		<%= restaurant.location %>,
+		<%= restaurant.description %>,
+		<%= link_to "Show", restaurant_path(restaurant) %>,
+		<%= link_to "Edit", edit_restaurant_path(restaurant) %>,
+		<%= link_to "Delete", restaurant, method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+	</p>
+
+<% end %>
