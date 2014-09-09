@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		redirect_to restaurants_url
+  		redirect_to restaurants_url, :notice => "Your new account has been created!"
   	else
+      flash.now[:alert] = "Error in creation"
   		render :new
   	end
   end

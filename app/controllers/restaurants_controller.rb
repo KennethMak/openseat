@@ -19,23 +19,25 @@ class RestaurantsController < ApplicationController
   def create
   	@restaurant = Restaurant.new(restaurant_params)
   	if @restaurant.save
-  		redirect_to restaurants_url
+  		redirect_to restaurants_url, :notice => "Restaurant added successfully"
   	else
+      flash.now[:alert] = "Error"
   		render :new
   	end
   end
 
   def update
   	if @restaurant.update_attributes(restaurant_params)
-  		redirect_to restaurants_url
+  		redirect_to restaurants_url, :notice => "Update Successful!"
   	else
+      flash.now[:alert] = "Update Failed!"
   		render :edit
   	end
   end
 
   def destroy
   	@restaurant.destroy
-  		redirect_to restaurants_url
+  		redirect_to restaurants_url, :notice => "Delete successful!"
   end
 
 
@@ -51,7 +53,7 @@ class RestaurantsController < ApplicationController
 
   def authorize_admin
     unless current_user && current_user.is_admin
-      redirect_to restaurants_url
+      redirect_to new_user_path, :notice => "ACCESS DENIED!"
     end
   end
 
