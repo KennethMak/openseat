@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
 	before_filter :load_restaurant, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
   	@restaurants = Restaurant.all
@@ -46,6 +47,12 @@ class RestaurantsController < ApplicationController
 
   def load_restaurant
   	@restaurant = Restaurant.find(params[:id])
+  end
+
+  def authorize_admin
+    unless current_user && current_user.is_admin
+      redirect_to restaurants_url
+    end
   end
 
 end
