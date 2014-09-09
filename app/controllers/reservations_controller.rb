@@ -52,3 +52,5 @@ class ReservationsController < ApplicationController
 	def load_reservation
 		@reservation = Reservation.find(params[:id])
 	end
+
+end
