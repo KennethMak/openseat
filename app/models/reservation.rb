@@ -6,7 +6,7 @@ class Reservation < ActiveRecord::Base
 	private
 
 	def availability
-		unless restaurant.available?(group_size, start)
+		unless restaurant.available?(party_size, start)
 			errors.add(:base, "Sorry, this restaurant is full!")
 		end
 	end

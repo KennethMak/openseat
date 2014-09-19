@@ -20,8 +20,9 @@ class ReservationsController < ApplicationController
 		@reservation = Reservation.new(reservation_params)
 
 		if @reservation.save
-			redirect_to reservation_path
+			redirect_to reservation_path(@reservation), :notice => "You have made a reservation"
 		else
+			flash.now[:alert] = "Error"
 			render :new
 		end
 	end

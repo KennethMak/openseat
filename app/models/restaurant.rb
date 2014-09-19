@@ -3,6 +3,6 @@ class Restaurant < ActiveRecord::Base
 	has_many :users, through: :reservations
 
 	def available?(party_size, start_time)
-		party_size <= capacity
+		party_size <= max_occupy
 	end
 end

@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   	if @user.save
   		redirect_to restaurants_url, :notice => "Your new account has been created!"
   	else
-      flash.now[:alert] = "Error in creation"
   		render :new
   	end
   end

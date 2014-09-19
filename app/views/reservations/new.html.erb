@@ -4,5 +4,5 @@
 	<%= f.label :party_size, "Party Size" %> <%= f.text_field :party_size %>
 	<%= f.datetime_select :start %>
 	<%= f.collection_select(:restaurant_id, Restaurant.all, :id, :name) %>
-	<%= f.submit "Submit" %>
+	<%= f.submit "Submit", class: "btn btn-default" %> <%= link_to 'Cancel', restaurants_path, class: "btn btn-default" %>
 <% end %>		

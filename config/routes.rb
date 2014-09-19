@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  # get 'restaurants/index'
-
-  # get 'restaurants/show'
-
-  # get 'restaurants/new'
-
-  # get 'restaurants/edit'
-
-  # get 'users/new'
-
-  # get 'users/create'
 
 resources :restaurants
 resources :users, only: [:new, :create]
