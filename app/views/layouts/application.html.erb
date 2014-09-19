@@ -9,13 +9,15 @@
 <body>
 
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  			<% if current_user %>
+<% if current_user %>
+<%= link_to "Log out", session_path("current"), :method => :delete, class: "btn btn-primary btn-lg" %>
+<% else %>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> 
 				Log In
-			<% else %>
-				Log Out 
-			<% end %>
 </button>
+<% end %>
+
+				
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -41,14 +43,15 @@
 		<%= password_field_tag :password %>
 	</div>
 	
-	<div class"actions"><%= submit_tag "Log in" %> <%= link_to 'Cancel', restaurants_path %></div>
+    <div class="modal-footer">
+
+		<div class="actions"><%= submit_tag "Log in", class: "btn btn-primary" %> <%= link_to 'Cancel', restaurants_path, class: "btn btn-default" %></div>
 	
 <% end %>
-
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+
+<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <!-- <button type="button" class="btn btn-primary">Submit</button> -->
       </div>
     </div>
   </div>
