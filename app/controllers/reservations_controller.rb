@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+	before_filter :ensure_logged_in, only: [:create, :destroy]
 
 	def index
 		@reservations = Reservation.all
@@ -18,11 +19,12 @@ class ReservationsController < ApplicationController
 
 	def create
 		@reservation = Reservation.new(reservation_params)
+		@reservation.user = current_user
 
 		if @reservation.save
 			redirect_to reservation_path(@reservation), :notice => "You have made a reservation"
 		else
-			flash.now[:alert] = "Error"
+			flash.now[:alert] = "Error! You need to log in first"
 			render :new
 		end
 	end

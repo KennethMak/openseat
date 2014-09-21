@@ -1,3 +1,5 @@
+<div class="container">
+
 <h1>Create a reservation</h1>
 
 <%= form_for @reservation do |f| %>
@@ -5,4 +7,6 @@
 	<%= f.datetime_select :start %>
 	<%= f.collection_select(:restaurant_id, Restaurant.all, :id, :name) %>
 	<%= f.submit "Submit", class: "btn btn-default" %> <%= link_to 'Cancel', restaurants_path, class: "btn btn-default" %>
-<% end %>		
+<% end %>
+
+</div>		

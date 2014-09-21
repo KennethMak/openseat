@@ -4,7 +4,11 @@
 
 	<%= link_to "Create a Reservation", new_reservation_url %></br>
 
+	<% if current_user && current_user.is_admin? %>
+
 	<div class="link"><%= link_to "Add a Restaurant", new_restaurant_url %></div>
+
+	<% end %>
 
 	<table class="table">
 
