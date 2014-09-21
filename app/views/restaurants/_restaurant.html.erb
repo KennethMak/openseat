@@ -1,0 +1,35 @@
+<div class="container">
+
+	<h1>Restaurants</h1>
+
+	<%= link_to "Create a Reservation", new_reservation_url %></br>
+
+	<% if current_user && current_user.is_admin? %>
+
+		<div class="link"><%= link_to "Add a Restaurant", new_restaurant_url %></div>
+
+	<% end %>
+
+	<table class="table">
+
+		<% @restaurants.each do |restaurant| %>
+		<tr>
+
+			<td><%= restaurant.name %></td>
+			<td><%= restaurant.location %></td>
+			<td><%= restaurant.description %></td>
+
+			<% if current_user && current_user.is_admin? %> 
+
+			<td><%= link_to "Show", restaurant_path(restaurant) %></td>
+			<td><%= link_to "Edit", edit_restaurant_path(restaurant) %></td>
+			<td><%= link_to "Delete", restaurant, method: :delete, data: {confirm: "Are you sure you want to delete?"} %></td>
+			<% end %>
+
+		</tr>
+
+		<% end %>
+
+	</table>
+
+</div>

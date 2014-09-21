@@ -1,4 +1,4 @@
-<div class="container"
+<div class="container">
 
 <%= form_for @restaurant do |f| %>
 	<% if @restaurant.errors.any? %>
@@ -29,6 +29,7 @@
 	<div class="field">
 		<%= f.label :max_occupy %></br>
 		<%= f.text_field :max_occupy %>
+	</div>
 
 	<div class="action"><%= f.submit %></div>
 

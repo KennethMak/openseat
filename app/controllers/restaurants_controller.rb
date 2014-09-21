@@ -2,8 +2,21 @@ class RestaurantsController < ApplicationController
 	before_filter :load_restaurant, only: [:show, :edit, :update, :destroy]
   before_filter :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
 
+  # def index
+  # 	@restaurants = Restaurant.all
+  # end
+
   def index
-  	@restaurants = Restaurant.all
+    @restaurants = if params[:search]
+      Restaurant.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
+    else
+      Restaurant.all
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -22,8 +35,8 @@ class RestaurantsController < ApplicationController
   		redirect_to restaurants_url, :notice => "Restaurant added successfully"
   	else
       flash.now[:alert] = "Error"
-  		render :new
-  	end
+      render :new
+    end
   end
 
   def update
@@ -31,13 +44,13 @@ class RestaurantsController < ApplicationController
   		redirect_to restaurants_url, :notice => "Update Successful!"
   	else
       flash.now[:alert] = "Update Failed!"
-  		render :edit
-  	end
+      render :edit
+    end
   end
 
   def destroy
   	@restaurant.destroy
-  		redirect_to restaurants_url, :notice => "Delete successful!"
+    redirect_to restaurants_url, :notice => "Delete successful!"
   end
 
 
