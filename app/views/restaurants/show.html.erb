@@ -1,2 +1,56 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<div class="container">
+
+	<h3>Reviews</h3>
+
+	<p>Reviews for <%= @restaurant.name %></p>
+
+	<table class="table">
+
+		<% @restaurant.reviews.each do |review| %>
+		<tr>
+			<td><%= review.comment %></td>
+			<% if review.user != nil %>
+			<td> by <%= review.user.email %></td>
+			<td>Added on: <%= review.created_at %></td>
+			<% end %>
+		<% end %>
+
+		</tr>
+
+	</table>
+
+	<% if current_user %>
+
+	<h4>New Review</h4>
+
+	<%= form_for([@restaurant, @review]) do |f| %>
+	
+	<% if @review.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+		<ul>
+			<% @review.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :comment %><br />
+		<%= f.text_area :comment %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Submit Review", class: "btn btn-default" %> <%= link_to 'Cancel', restaurants_path, class: "btn btn-default" %>
+	</div>
+	<% end %>	
+
+	<% else %>
+
+	<p>Please <%= link_to "log in", new_session_path %> to add a review.</p>
+
+	<% end %>
+
+</div>
+

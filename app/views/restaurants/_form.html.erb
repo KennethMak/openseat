@@ -31,7 +31,7 @@
 		<%= f.text_field :max_occupy %>
 	</div>
 
-	<div class="action"><%= f.submit %></div>
+	<div class="action"><%= f.submit "Submit", class: "btn btn-default" %> <%= link_to 'Cancel', restaurants_path, class: "btn btn-default" %></div>
 
 <% end %>
 
