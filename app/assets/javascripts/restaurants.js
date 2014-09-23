@@ -8,9 +8,5 @@ $(document).on('ready page:load', function() {
 		var searchValue = $('#search').val();
 
 		$.getScript('/restaurants?search=' + searchValue);
-		.done(function(data){
-			console.log(data);
-			$('restaurants').html(data);
-		});
 	});
 });

@@ -1,28 +1,24 @@
+<div class="container">
 
-<%= render 'restaurant' %>
+	<h1>Restaurants</h1>
+
+	<%= link_to "Create a Reservation", new_reservation_url %></br>
+
+	<% if current_user && current_user.is_admin? %>
+
+	<div class="link"><%= link_to "Add a Restaurant", new_restaurant_url %></div>
+
+	<% end %>
+
+	<table class="table" id="restaurants">
+		<tbody>
+			
+			<%= render @restaurants %>
+
+		</tbody>
+
+	</table>
+
+</div>
 
 <% link_to "Back", restaurants_url %>
-
-<!-- // <script type="text/javascript">
-
-// function display_search_results() {
-//     // readyState === 4 means that the asynchronous request completed successfully
-//     if (this.readyState === 4) {
-//     	console.log(this);
-//     	document.getElementById('restaurants').innerHTML = this.responseText;
-//     }
-// }
-
-// var form = document.getElementById('search-form');
-// form.addEventListener('submit', function(event) {
-// 	event.preventDefault();
-// 	var searchValue = document.getElementById('search').value;
-
-// 	var xhr = new XMLHttpRequest();
-// 	xhr.onload = display_search_results;
-// 	xhr.open('GET', '/restaurants?search=' + searchValue, true);
-// 	xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-// 	xhr.send();
-// });
-
-// </script> -->
